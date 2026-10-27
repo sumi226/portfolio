@@ -13,9 +13,9 @@ export const Projects: React.FC = () => {
 
   const categories: FilterCategory[] = [
     { id: 'all', label: 'All Projects' },
-    { id: 'Full Stack Web Application', label: 'E-Commerce' },
-    { id: 'Productivity & Workflow Tool', label: 'Task Management' },
-    { id: 'Financial Analytics & Data Visualization', label: 'Finance & Analytics' },
+    { id: 'Developer Tools & Productivity', label: 'Developer Tools' },
+    { id: 'Health & Fitness Application', label: 'Fitness & Health' },
+    { id: 'E-Commerce & Market Intelligence', label: 'Market & E-Commerce' },
   ];
 
   const filteredProjects = filter === 'all'

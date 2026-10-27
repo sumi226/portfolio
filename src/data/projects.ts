@@ -2,270 +2,252 @@ import { Project } from '../types';
 
 export const projectsData: Project[] = [
   {
-    id: "ecommerce",
-    slug: "ecommerce",
-    title: "E-Commerce Web Application",
-    subtitle: "Modern storefront with dynamic cart, search filters & checkout flow",
+    id: "devstack",
+    slug: "devstack",
+    title: "DevStack — Developer Workflow & Task Platform",
+    subtitle: "High-performance developer workspace, sprint tracker & task organization system",
     shortDescription:
-      "A responsive e-commerce web application featuring real-time product filtering, interactive product detail modals, persistent cart state, and an intuitive checkout flow.",
-    category: "Full Stack Web Application",
+      "A modern developer productivity platform featuring dynamic sprint boards, interactive task lifecycle transitions, category tags, and clean responsive UI tailored for engineering teams.",
+    category: "Developer Tools & Productivity",
     featured: true,
-    thumbnailType: "ecommerce",
-    liveUrl: "https://sumi226.github.io/ecommerce-store-sample",
-    clientRepoUrl: "https://github.com/sumi226/ecommerce-web-app",
-    serverRepoUrl: "https://github.com/sumi226/ecommerce-api",
-    isPlaceholderLink: true,
+    thumbnailType: "devstack",
+    liveUrl: "https://devstack-pr.netlify.app/",
+    clientRepoUrl: "https://github.com/sumi226/Assignment-05-DevStack",
+    serverRepoUrl: "https://github.com/sumi226/Assignment-05-DevStack",
+    isPlaceholderLink: false,
     technologies: [
       "React.js",
       "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "REST APIs",
+      "JavaScript",
+      "HTML5",
+      "Vite",
+      "Netlify",
     ],
     techBadges: [
       { name: "React 18", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" },
       { name: "Tailwind CSS", color: "bg-teal-500/10 text-teal-400 border-teal-500/30" },
-      { name: "Node.js", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" },
-      { name: "Express.js", color: "bg-slate-500/10 text-slate-300 border-slate-500/30" },
-      { name: "MongoDB", color: "bg-green-500/10 text-green-400 border-green-500/30" },
+      { name: "JavaScript", color: "bg-amber-500/10 text-amber-300 border-amber-500/30" },
+      { name: "Vite", color: "bg-purple-500/10 text-purple-400 border-purple-500/30" },
+      { name: "Netlify", color: "bg-sky-500/10 text-sky-400 border-sky-500/30" },
     ],
     overview:
-      "This E-Commerce Web Application is designed to deliver a seamless online shopping experience for both consumers and store administrators. Built using a decoupled client-server architecture, it emphasizes fast page load speeds, clean typography, responsive mobile grids, and an intuitive checkout experience.",
+      "DevStack is an interactive productivity application built to empower developers with smooth task organization, sprint visibility, and progress tracking. Engineered with clean modular React components and styled using Tailwind CSS, it offers immediate status updates, intuitive task management, and responsive layouts across all device viewports.",
     keyFeatures: [
       {
-        title: "Dynamic Product Listing & Categorization",
+        title: "Dynamic Sprint & Kanban Workflow",
         description:
-          "Instant client-side multi-filter by category, price range, stock availability, and keyword search with debounce.",
+          "Organize software engineering tickets smoothly across 'To Do', 'In Progress', and 'Completed' states with animated state feedback.",
       },
       {
-        title: "Interactive Product Details",
+        title: "Priority Tagging & Category Badges",
         description:
-          "High-resolution image gallery preview, variant selector (size, color), specifications tab, and customer reviews.",
+          "Color-coded priority flags (High, Medium, Low) and technical domain tags (Frontend, Backend, DevOps, Styling) for rapid scanning.",
       },
       {
-        title: "Persistent Shopping Cart",
+        title: "Interactive Task Creation & State Sync",
         description:
-          "Client-side cart synchronized with localStorage and backend sessions, supporting real-time quantity adjustments and coupon calculations.",
+          "Instant ticket addition with input validation, title debounce, and immediate state updates without unnecessary re-renders.",
       },
       {
-        title: "Responsive & Intuitive Checkout",
+        title: "Fast Lightweight Vite Bundle",
         description:
-          "Multi-step billing and shipping address validation, order summary verification, and simulated payment gateway confirmation.",
+          "Built using modern Vite tooling for lightning-fast sub-second development reload and optimized production asset bundles.",
       },
       {
-        title: "Admin Product Management (MERN)",
+        title: "Seamless Cloud Deployment on Netlify",
         description:
-          "RESTful endpoints for creating, editing, and archiving product inventory with schema validation via Mongoose.",
+          "Configured with automated continuous deployment pipelines and optimized CDN distribution via Netlify Edge.",
       },
     ],
     myRole:
-      "Frontend & Backend Developer [Editable Contribution]. Responsible for architecting the React component hierarchy, designing responsive Tailwind UI components, configuring cart context state management, and developing RESTful product endpoints in Express.js.",
+      "Frontend Architect & UI Developer. Designed the component architecture, configured the responsive Kanban layout with Tailwind CSS, implemented state management for task lifecycles, and managed the continuous deployment workflow on Netlify.",
     challenges: [
       {
-        challenge: "Cart State Synchronization",
+        challenge: "Fluid Multi-Column Layout on Mobile",
         solution:
-          "Implemented a centralized React Context with localStorage hydration to prevent state loss during page refreshes and route transitions.",
+          "Constructed responsive flex-col and grid utilities in Tailwind CSS that gracefully shift from a 3-column sprint layout on desktop to single-column swipeable cards on mobile.",
       },
       {
-        challenge: "Product Filter Performance",
+        challenge: "Instant UI Responsiveness",
         solution:
-          "Utilized useMemo hooks and debounced search inputs to maintain 60fps responsiveness during high-volume catalog filtering.",
-      },
-      {
-        challenge: "Responsive Checkout Form Usability",
-        solution:
-          "Structured a multi-step progressive disclosure form with instant inline validation to reduce form fatigue on mobile devices.",
+          "Used optimized functional state hooks and pure sub-components to ensure instant status transitions without UI stutter.",
       },
     ],
     improvements: [
-      "Integration with Stripe or SSLCommerz payment gateway APIs.",
-      "User authentication with JWT (JSON Web Tokens) and social OAuth.",
-      "Customer wishlist and order tracking history dashboard.",
-      "Server-side pagination and full-text search with MongoDB Atlas Search.",
+      "Add drag-and-drop ticket reordering using Pragmatic Drag and Drop or Framer Motion.",
+      "Integrate GitHub webhook alerts to auto-complete tasks when commits are pushed.",
+      "Add persistent user sessions with Supabase or Firebase authentication.",
     ],
     stats: [
-      { label: "Core Screens", value: "6+ Pages" },
-      { label: "Filter Latency", value: "< 50ms" },
+      { label: "Deployment", value: "Netlify Edge" },
+      { label: "Framework", value: "React + Vite" },
       { label: "Design", value: "100% Responsive" },
     ],
   },
   {
-    id: "task-management",
-    slug: "task-management",
-    title: "Task Management Application",
-    subtitle: "Agile task organization with status workflows & priority analytics",
+    id: "fitlog",
+    slug: "fitlog",
+    title: "FitLog — Workout Library & Routine Planner",
+    subtitle: "Train with intent, log every set. Modern dark-mode gym companion & routine planner",
     shortDescription:
-      "A productivity web application for organizing daily tasks, managing project milestones across status columns, tracking deadlines, and visualizing completion progress.",
-    category: "Productivity & Workflow Tool",
+      "A dark-themed fitness companion and workout routine planner enabling athletes and gym-goers to browse exercises across major muscle groups, build custom daily workout plans, and track progress.",
+    category: "Health & Fitness Application",
     featured: true,
-    thumbnailType: "taskManagement",
-    liveUrl: "https://sumi226.github.io/task-manager-sample",
-    clientRepoUrl: "https://github.com/sumi226/task-management-app",
-    serverRepoUrl: "https://github.com/sumi226/task-management-api",
-    isPlaceholderLink: true,
+    thumbnailType: "fitlog",
+    liveUrl: "https://fit-log-3n3e.vercel.app",
+    clientRepoUrl: "https://github.com/sumi226/Fit_log",
+    serverRepoUrl: "https://github.com/sumi226/Fit_log",
+    isPlaceholderLink: false,
     technologies: [
+      "Next.js",
       "React.js",
       "Tailwind CSS",
-      "JavaScript",
-      "REST APIs",
-      "LocalStorage / NoSQL",
-      "Framer Motion",
+      "TypeScript",
+      "Geist Design System",
+      "Vercel",
     ],
     techBadges: [
+      { name: "Next.js", color: "bg-white/10 text-white border-white/20" },
       { name: "React 18", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" },
       { name: "Tailwind CSS", color: "bg-teal-500/10 text-teal-400 border-teal-500/30" },
-      { name: "REST APIs", color: "bg-indigo-500/10 text-indigo-400 border-indigo-500/30" },
-      { name: "Framer Motion", color: "bg-purple-500/10 text-purple-400 border-purple-500/30" },
-      { name: "NoSQL Data", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" },
+      { name: "TypeScript", color: "bg-blue-500/10 text-blue-400 border-blue-500/30" },
+      { name: "Vercel", color: "bg-violet-500/10 text-violet-300 border-violet-500/30" },
     ],
     overview:
-      "The Task Management Application is built to simplify task prioritization and tracking for individual developers and collaborative teams. It combines an intuitive card-based Kanban board with a structured tabular view, offering quick status updates, deadline alerts, and productivity metrics.",
+      "FitLog is built for dedicated fitness enthusiasts who demand an uncluttered, modern dark-themed training tracker. Built with Next.js and TypeScript, FitLog provides a curated library of lifts covering every major muscle group, quick filter sorting by duration, calories, and ratings, and an interactive daily plan builder to keep gym sessions structured and disciplined.",
     keyFeatures: [
       {
-        title: "Full CRUD Task Lifecycle",
+        title: "Comprehensive Exercise Library",
         description:
-          "Create, read, update, and delete tasks with custom tags, due dates, priority levels (Low, Medium, High), and detailed descriptions.",
+          "Curated catalog of fundamental multi-joint and isolation lifts targeting Chest, Legs, Back, Shoulders, and Arms with rep and set guidelines.",
       },
       {
-        title: "Dynamic Status Management",
+        title: "Interactive 'My Plan' Routine Builder",
         description:
-          "Easily transition tasks across 'To Do', 'In Progress', and 'Completed' states with animated visual feedback.",
+          "Select exercises directly into today's customized workout routine with real-time total sets and estimated calorie expenditure calculations.",
       },
       {
-        title: "Organized Dashboard & Filters",
+        title: "Dynamic Sorting & Filtering",
         description:
-          "Dashboard view providing instant summaries of pending versus finished tasks, overdue alerts, and filter pills.",
+          "Instant client-side sorting by workout duration, estimated caloric burn, difficulty level, and user ratings.",
       },
       {
-        title: "Search & Priority Tagging",
+        title: "Purpose-Built Dark Gym Aesthetic",
         description:
-          "Real-time instant task searching by keyword and color-coded priority categorization for fast scanning.",
+          "Designed with a sleek, distraction-free charcoal and violet dark mode tailored for gym environments and low-light mobile usage.",
       },
       {
-        title: "Fluid Mobile Experience",
+        title: "Production Next.js & Vercel Deployment",
         description:
-          "Mobile-optimized touch controls, bottom sheet editors, and responsive drawer navigation.",
+          "Built on Next.js with Geist typography, server-side caching, and rapid continuous delivery on Vercel.",
       },
     ],
     myRole:
-      "Full Stack Developer [Editable Contribution]. Designed the board workflow, built the animated task cards using Framer Motion, structured client data persistence, and created mock REST API endpoints for task synchronization.",
+      "Full Stack Developer & Product Designer. Conceptualized the user experience for seamless workout logging, created TypeScript data schemas for exercises, developed responsive dark UI components, and managed deployment on Vercel.",
     challenges: [
       {
-        challenge: "Real-time Status Transitions",
+        challenge: "Intuitive Single-Tap Mobile Usability",
         solution:
-          "Created optimistic UI updates to instantly re-render moved cards before waiting for backend confirmation.",
+          "Engineered large touch targets and instant visual feedback so users can easily add exercises and adjust plans in between heavy gym sets.",
       },
       {
-        challenge: "Organizing High Volume Tasks",
+        challenge: "Strict Type Safety with TypeScript",
         solution:
-          "Built composable filter hooks to split tasks by status, priority, and date range without duplicate loops.",
-      },
-      {
-        challenge: "Accessible Drag-and-Drop / Button Controls",
-        solution:
-          "Provided keyboard-accessible status change dropdowns alongside drag gestures so all users can manage tasks easily.",
+          "Created robust interfaces for exercises, plan state, muscle groups, and filter keys to eliminate runtime errors across the Next.js app.",
       },
     ],
     improvements: [
-      "Team workspace collaboration with real-time WebSockets (Socket.io).",
-      "Subtasks, checklist items, and file attachment uploads.",
-      "Email or push notifications for upcoming due dates.",
-      "Export tasks to CSV, PDF, or sync with Google Calendar.",
+      "Add historical workout logs with progressive overload tracking charts.",
+      "Integrate timer intervals for rest periods between sets with sound cues.",
+      "Export workout summaries to Apple Health and Google Fit.",
     ],
     stats: [
-      { label: "Task Views", value: "Board & List" },
-      { label: "Status Cycles", value: "3 Workflows" },
-      { label: "Persistence", value: "Local & Cloud" },
+      { label: "Deployment", value: "Vercel Cloud" },
+      { label: "Lifts Catalog", value: "12+ Exercises" },
+      { label: "Typography", value: "Geist Sans" },
     ],
   },
   {
-    id: "finance-dashboard",
-    slug: "finance-dashboard",
-    title: "Personal Finance Dashboard",
-    subtitle: "Interactive financial visualizer with expense tracking & budget analytics",
+    id: "market-price",
+    slug: "market-price",
+    title: "বাজার দর — Daily Commodity Price Monitor",
+    subtitle: "নিত্যপণ্যের আজকের দাম, রিয়েল-টাইম মূল্য ওঠানামা ট্র্যাকিং ও স্মার্ট বাজেট ক্যালকুলেটর",
     shortDescription:
-      "An analytical personal finance dashboard enabling users to track expenditures, visualize budget allocations through dynamic SVG charts, and monitor monthly savings.",
-    category: "Financial Analytics & Data Visualization",
+      "A real-time daily commodity and grocery price tracking web application with interactive shopping cart, category filters (Rice, Lentils, Oil, Vegetables, Fish, Meat, Eggs & Milk), and live percentage price trend indicators.",
+    category: "E-Commerce & Market Intelligence",
     featured: true,
-    thumbnailType: "financeDashboard",
-    liveUrl: "https://sumi226.github.io/finance-dashboard-sample",
-    clientRepoUrl: "https://github.com/sumi226/finance-dashboard-app",
-    serverRepoUrl: "https://github.com/sumi226/finance-dashboard-api",
-    isPlaceholderLink: true,
+    thumbnailType: "marketPrice",
+    liveUrl: "https://sumi226-market-price.vercel.app/",
+    clientRepoUrl: "https://github.com/sumi226/market-price",
+    serverRepoUrl: "https://github.com/sumi226/market-price",
+    isPlaceholderLink: false,
     technologies: [
+      "Next.js",
       "React.js",
       "Tailwind CSS",
-      "JavaScript",
-      "Node.js",
-      "Data Visuals / SVG",
-      "MySQL / MongoDB",
+      "TypeScript",
+      "Dynamic Cart Engine",
+      "Vercel",
     ],
     techBadges: [
+      { name: "Next.js", color: "bg-white/10 text-white border-white/20" },
       { name: "React 18", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" },
       { name: "Tailwind CSS", color: "bg-teal-500/10 text-teal-400 border-teal-500/30" },
-      { name: "Data Visuals", color: "bg-blue-500/10 text-blue-400 border-blue-500/30" },
-      { name: "Express.js", color: "bg-slate-500/10 text-slate-300 border-slate-500/30" },
-      { name: "Financial Analytics", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" },
+      { name: "Price Analytics", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" },
+      { name: "Bilingual UI", color: "bg-amber-500/10 text-amber-300 border-amber-500/30" },
     ],
     overview:
-      "Leveraging my background in MBA Finance & Banking, this project merges technical software engineering with rigorous financial logic. The Personal Finance Dashboard gives individuals immediate clarity over their income streams, expense allocations, and progress toward savings goals through responsive summary cards and data charts.",
+      "Combining technical software architecture with analytical financial reasoning, বাজার দর (Market Price) brings complete price transparency to daily household groceries and essential commodities in Bangladesh. Users can monitor live daily rates across 8 essential categories (চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ, মসলা), track inflationary percentage movements (▲ / ▼), and simulate their total shopping budget in Bangladeshi Taka (৳) through an interactive cart.",
     keyFeatures: [
       {
-        title: "Financial Data Visualization",
+        title: "Categorized Essential Commodity Catalog",
         description:
-          "Dynamic bar, line, and doughnut representations of monthly cash flow, category breakdowns, and savings trajectories.",
+          "Daily price benchmarks for essentials including মিনিকেট চাল, স্বর্ণমাছি চাল, মসুর ডাল, খাঁটি সরিষার তেল, আলু, পেঁয়াজ, রুই মাছ, গরুর মাংস, এবং ডিম।",
       },
       {
-        title: "Expense & Income Tracking Interface",
+        title: "Live Price Trend Indicators (▲ / ▼ / —)",
         description:
-          "Fast transaction entry form with category tags (Housing, Food, Tech, Utilities), timestamps, and receipt notes.",
+          "Clear visual percentage indicators showing daily market price fluctuations (e.g., পেঁয়াজ ▲ +12.5%, আলু ▼ -6.2%) for informed consumer purchasing.",
       },
       {
-        title: "Executive Summary Cards",
+        title: "Dynamic Smart Shopping Cart & Budgeting",
         description:
-          "Highlighting Net Balance, Total Monthly Inflow, Total Outflow, and Savings Rate with period-over-period percentage indicators.",
+          "Add items to the cart, adjust kilogram/liter quantities, and instantly compute the total grocery expense in Bangladeshi Taka (৳).",
       },
       {
-        title: "Budget Threshold Alerts",
+        title: "Bilingual Bengali & English UI",
         description:
-          "Visual warning indicators when spending in any category nears or exceeds user-defined budget thresholds.",
+          "Culturally tailored design with authentic Bengali typography, currency symbols (৳), and intuitive category emoji iconography.",
       },
       {
-        title: "Transaction Search & Export",
+        title: "High Performance Next.js on Vercel",
         description:
-          "Instant search, date filtering, and quick download/print summaries for monthly accounting reviews.",
+          "Ultra-fast loading times with optimized Next.js static generation and real-time client hydration hosted on Vercel.",
       },
     ],
     myRole:
-      "Lead Developer & Finance Specialist [Editable Contribution]. Formulated the financial analytical algorithms, designed the dark-theme financial dashboard metrics, created custom SVG chart components, and structured database schema for ledger transactions.",
+      "Lead Developer & Business Analyst. Designed the financial data structure for daily commodity price points, implemented the dynamic shopping cart calculation algorithms, crafted the responsive bilingual UI, and deployed the production app to Vercel.",
     challenges: [
       {
-        challenge: "Accurate Precision in Currency Calculations",
+        challenge: "Precise Float Arithmetic in Cart Totals",
         solution:
-          "Avoided floating point rounding errors by storing and computing values in integer cents before converting for display.",
+          "Avoided JavaScript floating-point errors by sanitizing commodity prices and keeping unit calculations normalized before formatting to Taka.",
       },
       {
-        challenge: "Responsive Chart Layouts",
+        challenge: "Accessible Cultural & Linguistic UI",
         solution:
-          "Constructed scalable vector SVG chart visualizations that resize dynamically across smartphone, tablet, and widescreen monitors.",
-      },
-      {
-        challenge: "Performance with Multi-year Transaction Histories",
-        solution:
-          "Created aggregated summary rollups and indexed queries to ensure instant dashboard rendering without UI lag.",
+          "Curated clear Bengali typography with standard font fallbacks and high-contrast badges so prices remain legible on any mobile device.",
       },
     ],
     improvements: [
-      "Bank feed synchronization via Plaid or Open Banking APIs.",
-      "Automated recurring subscription detector and bill payment reminders.",
-      "Multi-currency support with live exchange rate converters.",
-      "Predictive cash flow forecasting powered by basic statistical regression.",
+      "Historical price trajectory charts showing weekly and monthly inflation trends.",
+      "Crowdsourced neighborhood market price submissions from different cities across Bangladesh.",
+      "SMS or WhatsApp price drop alerts for essential staple goods.",
     ],
     stats: [
-      { label: "Metrics Tracked", value: "12+ KPIs" },
-      { label: "Chart Types", value: "Bar, Donut, Line" },
-      { label: "Accuracy", value: "Precision Int" },
+      { label: "Deployment", value: "Vercel Cloud" },
+      { label: "Categories", value: "8 Segments" },
+      { label: "Currency", value: "BDT (৳)" },
     ],
   },
 ];

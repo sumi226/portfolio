@@ -1,115 +1,326 @@
 import React, { useState } from 'react';
 import { 
-  ShoppingBag, Trash2, Plus, Clock, 
-  DollarSign, TrendingUp, TrendingDown 
+  CheckCircle2, Clock, Dumbbell, Flame, TrendingUp, TrendingDown, 
+  Layers, Code2, ShoppingCart, Plus, Trash2, ArrowRight, RefreshCw,
+  Search, ShieldCheck, Sparkles, Activity
 } from 'lucide-react';
 
-interface CartItem {
+/* =============================================================
+ * 1. DevStack Interactive Live Demo
+ * =========================================================== */
+interface DevTask {
   id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
-
-interface ProductItem {
-  id: number;
-  name: string;
+  title: string;
   category: string;
-  price: number;
-  rating: number;
+  priority: 'High' | 'Medium' | 'Low';
+  status: 'todo' | 'inProgress' | 'done';
 }
 
-export const EcommerceLiveDemo: React.FC = () => {
-  const [cart, setCart] = useState<CartItem[]>([
-    { id: 1, name: "Noise-Cancelling Headphones", price: 149, quantity: 1 },
-    { id: 2, name: "Ergonomic Mechanical Keyboard", price: 99, quantity: 1 }
+export const DevStackLiveDemo: React.FC = () => {
+  const [tasks, setTasks] = useState<DevTask[]>([
+    { id: 1, title: 'Implement JWT Auth flow', category: 'Backend', priority: 'High', status: 'todo' },
+    { id: 2, title: 'Build responsive Kanban board', category: 'Frontend', priority: 'High', status: 'inProgress' },
+    { id: 3, title: 'Configure Tailwind palette & fonts', category: 'Styling', priority: 'Medium', status: 'done' },
+    { id: 4, title: 'Optimize Netlify build deployment', category: 'DevOps', priority: 'Low', status: 'done' },
   ]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [newTaskTitle, setNewTaskTitle] = useState('');
 
-  const catalog: ProductItem[] = [
-    { id: 1, name: "Noise-Cancelling Headphones", category: "audio", price: 149, rating: 4.8 },
-    { id: 2, name: "Ergonomic Mechanical Keyboard", category: "peripherals", price: 99, rating: 4.9 },
-    { id: 3, name: "Ultra-wide 4K Monitor", category: "peripherals", price: 349, rating: 4.7 },
-    { id: 4, name: "Wireless Gaming Mouse", category: "peripherals", price: 59, rating: 4.6 },
-    { id: 5, name: "Studio Microphone", category: "audio", price: 129, rating: 4.8 },
-  ];
-
-  const filteredCatalog = selectedCategory === "all" 
-    ? catalog 
-    : catalog.filter(item => item.category === selectedCategory);
-
-  const addToCart = (product: ProductItem) => {
-    setCart(prev => {
-      const exists = prev.find(item => item.id === product.id);
-      if (exists) {
-        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
+  const moveTask = (id: number) => {
+    setTasks(prev => prev.map(t => {
+      if (t.id === id) {
+        if (t.status === 'todo') return { ...t, status: 'inProgress' };
+        if (t.status === 'inProgress') return { ...t, status: 'done' };
+        return { ...t, status: 'todo' };
       }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (id: number) => {
-    setCart(prev => prev.filter(item => item.id !== id));
-  };
-
-  const updateQuantity = (id: number, delta: number) => {
-    setCart(prev => prev.map(item => {
-      if (item.id === id) {
-        const newQty = item.quantity + delta;
-        return newQty > 0 ? { ...item, quantity: newQty } : item;
-      }
-      return item;
+      return t;
     }));
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const addTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTaskTitle.trim()) return;
+    const newTask: DevTask = {
+      id: Date.now(),
+      title: newTaskTitle.trim(),
+      category: 'Feature',
+      priority: 'Medium',
+      status: 'todo'
+    };
+    setTasks(prev => [newTask, ...prev]);
+    setNewTaskTitle('');
+  };
+
+  const todoTasks = tasks.filter(t => t.status === 'todo');
+  const inProgressTasks = tasks.filter(t => t.status === 'inProgress');
+  const doneTasks = tasks.filter(t => t.status === 'done');
 
   return (
-    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
-        <div>
-          <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">Interactive Storefront Demo</span>
-          <h4 className="text-lg font-bold text-white flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-cyan-400" /> ShopFlow Client & Cart
-          </h4>
+    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+            <Code2 className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-white">DevStack Sprint Board</h4>
+            <p className="text-[11px] text-slate-400">Interactive Task & Workflow Simulator</p>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          {["all", "audio", "peripherals"].map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-lg text-xs font-medium capitalize transition-colors ${
-                selectedCategory === cat 
-                  ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40" 
-                  : "bg-slate-800/80 text-slate-400 hover:text-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="flex items-center gap-2 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+            {tasks.length} Total Tasks
+          </span>
+          <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            {doneTasks.length} Completed
+          </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <div className="lg:col-span-2 space-y-3">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Available Products</div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {filteredCatalog.map(product => {
-              const inCart = cart.some(item => item.id === product.id);
+      {/* Add Task Input Form */}
+      <form onSubmit={addTask} className="flex gap-2 mb-6">
+        <input
+          type="text"
+          value={newTaskTitle}
+          onChange={(e) => setNewTaskTitle(e.target.value)}
+          placeholder="Add a new developer sprint task..."
+          className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+        />
+        <button
+          type="submit"
+          className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          <span>Add Task</span>
+        </button>
+      </form>
+
+      {/* 3 Status Columns */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        {/* To Do Column */}
+        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/90 flex flex-col">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs font-semibold text-slate-400">
+            <span>To Do</span>
+            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">
+              {todoTasks.length}
+            </span>
+          </div>
+          <div className="space-y-2 flex-1">
+            {todoTasks.map(t => (
+              <div key={t.id} className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800 text-xs flex flex-col gap-1.5 group hover:border-cyan-500/40 transition-colors">
+                <span className="text-slate-200 font-medium">{t.title}</span>
+                <div className="flex items-center justify-between pt-1 text-[10px]">
+                  <span className="text-amber-400 font-mono">{t.priority} Priority</span>
+                  <button
+                    onClick={() => moveTask(t.id)}
+                    className="text-cyan-400 hover:text-cyan-300 font-mono flex items-center gap-1"
+                  >
+                    Start <ArrowRight className="w-2.5 h-2.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+            {todoTasks.length === 0 && (
+              <p className="text-[11px] text-slate-500 italic py-4 text-center">No tasks in backlog</p>
+            )}
+          </div>
+        </div>
+
+        {/* In Progress Column */}
+        <div className="bg-slate-950/60 p-3 rounded-xl border border-cyan-500/30 flex flex-col">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs font-semibold text-cyan-300">
+            <span>In Progress</span>
+            <span className="px-1.5 py-0.5 rounded bg-cyan-950/80 text-[10px] font-mono text-cyan-300">
+              {inProgressTasks.length}
+            </span>
+          </div>
+          <div className="space-y-2 flex-1">
+            {inProgressTasks.map(t => (
+              <div key={t.id} className="bg-slate-900/90 p-2.5 rounded-lg border border-cyan-500/40 text-xs flex flex-col gap-1.5 shadow-sm">
+                <span className="text-white font-medium">{t.title}</span>
+                <div className="flex items-center justify-between pt-1 text-[10px]">
+                  <span className="text-cyan-400 font-mono flex items-center gap-1">
+                    <Clock className="w-2.5 h-2.5" /> Active
+                  </span>
+                  <button
+                    onClick={() => moveTask(t.id)}
+                    className="text-emerald-400 hover:text-emerald-300 font-mono flex items-center gap-1 font-semibold"
+                  >
+                    Done <CheckCircle2 className="w-2.5 h-2.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+            {inProgressTasks.length === 0 && (
+              <p className="text-[11px] text-slate-500 italic py-4 text-center">No active tasks</p>
+            )}
+          </div>
+        </div>
+
+        {/* Done Column */}
+        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/90 flex flex-col">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs font-semibold text-emerald-400">
+            <span>Completed</span>
+            <span className="px-1.5 py-0.5 rounded bg-emerald-950/80 text-[10px] font-mono text-emerald-300">
+              {doneTasks.length}
+            </span>
+          </div>
+          <div className="space-y-2 flex-1">
+            {doneTasks.map(t => (
+              <div key={t.id} className="bg-slate-900/60 p-2.5 rounded-lg border border-emerald-500/30 text-xs flex flex-col gap-1.5 opacity-80">
+                <span className="text-slate-300 line-through font-medium">{t.title}</span>
+                <div className="flex items-center justify-between pt-1 text-[10px]">
+                  <span className="text-emerald-400 font-mono flex items-center gap-1">
+                    <CheckCircle2 className="w-2.5 h-2.5" /> Verified
+                  </span>
+                  <button
+                    onClick={() => moveTask(t.id)}
+                    className="text-slate-400 hover:text-slate-200 font-mono flex items-center gap-1"
+                  >
+                    Reopen <RefreshCw className="w-2.5 h-2.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+            {doneTasks.length === 0 && (
+              <p className="text-[11px] text-slate-500 italic py-4 text-center">No completed tasks yet</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =============================================================
+ * 2. FitLog Interactive Live Demo
+ * =========================================================== */
+interface WorkoutExercise {
+  id: number;
+  name: string;
+  muscle: string;
+  sets: number;
+  reps: string;
+  difficulty: string;
+  calories: number;
+}
+
+export const FitLogLiveDemo: React.FC = () => {
+  const library: WorkoutExercise[] = [
+    { id: 1, name: "Barbell Bench Press", muscle: "Chest", sets: 4, reps: "8-10", difficulty: "Intermediate", calories: 120 },
+    { id: 2, name: "Barbell Back Squat", muscle: "Legs", sets: 5, reps: "6-8", difficulty: "Hard", calories: 180 },
+    { id: 3, name: "Conventional Deadlift", muscle: "Back", sets: 3, reps: "5", difficulty: "Hard", calories: 200 },
+    { id: 4, name: "Overhead Military Press", muscle: "Shoulders", sets: 4, reps: "8-12", difficulty: "Intermediate", calories: 110 },
+    { id: 5, name: "Weighted Pull-Ups", muscle: "Back / Lats", sets: 4, reps: "8-10", difficulty: "Intermediate", calories: 130 },
+    { id: 6, name: "Dumbbell Incline Curl", muscle: "Biceps", sets: 3, reps: "12", difficulty: "Light", calories: 75 },
+  ];
+
+  const [activeMuscle, setActiveMuscle] = useState<string>("All");
+  const [plan, setPlan] = useState<WorkoutExercise[]>([library[0], library[1]]);
+
+  const togglePlanItem = (exercise: WorkoutExercise) => {
+    setPlan(prev => {
+      const exists = prev.find(item => item.id === exercise.id);
+      if (exists) {
+        return prev.filter(item => item.id !== exercise.id);
+      }
+      return [...prev, exercise];
+    });
+  };
+
+  const filteredExercises = activeMuscle === "All"
+    ? library
+    : library.filter(item => item.muscle.toLowerCase().includes(activeMuscle.toLowerCase()));
+
+  const totalEstCalories = plan.reduce((sum, item) => sum + item.calories, 0);
+  const totalSets = plan.reduce((sum, item) => sum + item.sets, 0);
+
+  return (
+    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      {/* Top Banner */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-violet-500/20 text-violet-400 flex items-center justify-center">
+            <Dumbbell className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-white">FitLog Workout Planner</h4>
+            <p className="text-[11px] text-slate-400 font-mono">Train with intent. Log every set.</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/30 flex items-center gap-1.5">
+            <Flame className="w-3 h-3 text-orange-400" /> {totalEstCalories} kcal
+          </span>
+          <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+            {totalSets} Sets in Plan
+          </span>
+        </div>
+      </div>
+
+      {/* Muscle Filter Buttons */}
+      <div className="flex flex-wrap gap-2 mb-5">
+        {['All', 'Chest', 'Legs', 'Back', 'Shoulders'].map(m => (
+          <button
+            key={m}
+            onClick={() => setActiveMuscle(m)}
+            className={`px-3 py-1 rounded-lg text-xs font-mono transition-colors ${
+              activeMuscle === m
+                ? 'bg-violet-600 text-white font-semibold shadow-sm'
+                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+            }`}
+          >
+            {m}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Exercise Library List */}
+        <div className="lg:col-span-2 space-y-2.5">
+          <h5 className="text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-2">
+            Exercise Catalog ({filteredExercises.length})
+          </h5>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {filteredExercises.map(ex => {
+              const inPlan = plan.some(p => p.id === ex.id);
               return (
-                <div key={product.id} className="bg-slate-800/50 hover:bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 transition-all flex flex-col justify-between">
+                <div
+                  key={ex.id}
+                  className={`p-3 rounded-xl border transition-all flex flex-col justify-between ${
+                    inPlan
+                      ? 'bg-violet-950/40 border-violet-500/50 shadow-sm'
+                      : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
+                  }`}
+                >
                   <div>
-                    <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-700/60 text-slate-300">
-                      {product.category}
-                    </span>
-                    <h5 className="font-semibold text-sm text-slate-100 mt-2">{product.name}</h5>
-                    <div className="text-xs text-cyan-400 font-mono mt-1 font-bold">${product.price}.00</div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-violet-300 border border-slate-800">
+                        {ex.muscle}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-400">~{ex.calories} kcal</span>
+                    </div>
+                    <div className="text-xs font-bold text-white mt-1">{ex.name}</div>
+                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                      {ex.sets} Sets × {ex.reps} Reps
+                    </div>
                   </div>
                   <button
-                    onClick={() => addToCart(product)}
-                    className="mt-3 w-full py-1.5 px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-all bg-cyan-600 hover:bg-cyan-500 text-white shadow-sm"
+                    onClick={() => togglePlanItem(ex)}
+                    className={`mt-3 w-full py-1.5 px-3 rounded-lg text-xs font-medium font-mono transition-colors flex items-center justify-center gap-1.5 ${
+                      inPlan
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                        : 'bg-slate-900 hover:bg-violet-600 hover:text-white text-slate-300 border border-slate-800'
+                    }`}
                   >
-                    <Plus className="w-3.5 h-3.5" /> {inCart ? "Add Another" : "Add to Cart"}
+                    {inPlan ? (
+                      <>
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Locked in Plan
+                      </>
+                    ) : (
+                      <>
+                        <Plus className="w-3 h-3" /> Add to Plan
+                      </>
+                    )}
                   </button>
                 </div>
               );
@@ -117,65 +328,49 @@ export const EcommerceLiveDemo: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-slate-800/30 rounded-xl p-4 border border-slate-700/60 flex flex-col justify-between">
+        {/* Selected Plan Summary Card */}
+        <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-700/60">
-              <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <ShoppingBag className="w-4 h-4 text-cyan-400" /> Active Cart ({cart.length})
+            <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800">
+              <h5 className="text-xs font-bold text-white font-mono flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5 text-violet-400" /> Today's Routine
+              </h5>
+              <span className="px-2 py-0.5 rounded bg-violet-950/80 text-[10px] text-violet-300 font-mono">
+                {plan.length} Selected
               </span>
-              <span className="text-xs font-mono text-cyan-400 font-bold">${total}.00</span>
             </div>
 
-            <div className="mt-3 space-y-2 max-h-56 overflow-y-auto pr-1">
-              {cart.length === 0 ? (
-                <div className="text-center py-6 text-xs text-slate-500">Cart is empty. Click a product to add!</div>
-              ) : (
-                cart.map(item => (
-                  <div key={item.id} className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/40 flex items-center justify-between">
-                    <div className="truncate mr-2">
-                      <div className="text-xs font-medium text-slate-200 truncate">{item.name}</div>
-                      <div className="text-[10px] text-cyan-400 font-mono">${item.price} each</div>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <button 
-                        onClick={() => updateQuantity(item.id, -1)} 
-                        className="w-5 h-5 rounded bg-slate-700 text-xs flex items-center justify-center text-slate-300 hover:bg-slate-600"
-                      >-</button>
-                      <span className="text-xs font-mono w-4 text-center text-slate-100">{item.quantity}</span>
-                      <button 
-                        onClick={() => updateQuantity(item.id, 1)} 
-                        className="w-5 h-5 rounded bg-slate-700 text-xs flex items-center justify-center text-slate-300 hover:bg-slate-600"
-                      >+</button>
-                      <button 
-                        onClick={() => removeFromCart(item.id)} 
-                        className="w-5 h-5 rounded text-rose-400 hover:bg-rose-500/20 flex items-center justify-center ml-1"
-                        title="Remove item"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+            <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+              {plan.map(p => (
+                <div key={p.id} className="p-2 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+                  <div>
+                    <span className="font-semibold text-slate-200 block text-[11px]">{p.name}</span>
+                    <span className="text-[10px] text-slate-400 font-mono">{p.sets} Sets • {p.muscle}</span>
                   </div>
-                ))
+                  <button
+                    onClick={() => togglePlanItem(p)}
+                    className="p-1 text-slate-500 hover:text-rose-400 transition-colors"
+                    title="Remove from plan"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+              {plan.length === 0 && (
+                <p className="text-xs text-slate-500 text-center py-8 italic">Your plan is empty. Click "+ Add to Plan" above.</p>
               )}
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-700/60">
-            <div className="flex justify-between text-xs text-slate-400 mb-1">
-              <span>Estimated Tax (0%):</span>
-              <span className="font-mono text-slate-200">$0.00</span>
+          <div className="pt-4 mt-3 border-t border-slate-800 text-xs">
+            <div className="flex justify-between text-slate-400 font-mono text-[11px] mb-1">
+              <span>Estimated Duration:</span>
+              <span className="text-slate-200">{plan.length * 15} mins</span>
             </div>
-            <div className="flex justify-between text-sm font-bold text-white mb-3">
-              <span>Order Total:</span>
-              <span className="font-mono text-cyan-400">${total}.00</span>
+            <div className="flex justify-between text-slate-400 font-mono text-[11px]">
+              <span>Workout Intensity:</span>
+              <span className="text-violet-400 font-bold">{plan.length > 3 ? 'High' : 'Moderate'}</span>
             </div>
-            <button 
-              disabled={cart.length === 0}
-              onClick={() => alert("Simulation: Checkout verified! Real app connects to Stripe or Express API.")}
-              className="w-full py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-medium text-xs rounded-lg transition-all shadow-md"
-            >
-              Simulate Checkout
-            </button>
           </div>
         </div>
       </div>
@@ -183,296 +378,228 @@ export const EcommerceLiveDemo: React.FC = () => {
   );
 };
 
-interface TaskItem {
+/* =============================================================
+ * 3. Market Price (বাজার দর) Interactive Live Demo
+ * =========================================================== */
+interface CommodityItem {
   id: number;
-  title: string;
-  status: 'todo' | 'inprogress' | 'done';
-  priority: string;
+  name: string;
+  category: string;
+  unit: string;
+  price: number;
+  change: number; // percentage change
+  trend: 'up' | 'down' | 'neutral';
 }
 
-export const TaskManagementLiveDemo: React.FC = () => {
-  const [tasks, setTasks] = useState<TaskItem[]>([
-    { id: 1, title: "Design responsive product cards", status: "done", priority: "High" },
-    { id: 2, title: "Implement JWT auth middleware", status: "inprogress", priority: "High" },
-    { id: 3, title: "Setup MongoDB schema validation", status: "inprogress", priority: "Medium" },
-    { id: 4, title: "Configure production deployment", status: "todo", priority: "Low" },
-  ]);
-  const [newTaskTitle, setNewTaskTitle] = useState<string>("");
-  const [newPriority, setNewPriority] = useState<string>("Medium");
+interface CartCommodity {
+  item: CommodityItem;
+  qty: number;
+}
 
-  const addTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTaskTitle.trim()) return;
-    setTasks(prev => [
-      ...prev,
-      {
-        id: Date.now(),
-        title: newTaskTitle.trim(),
-        status: "todo",
-        priority: newPriority,
-      }
-    ]);
-    setNewTaskTitle("");
-  };
-
-  const moveTask = (id: number, newStatus: 'todo' | 'inprogress' | 'done') => {
-    setTasks(prev => prev.map(t => t.id === id ? { ...t, status: newStatus } : t));
-  };
-
-  const deleteTask = (id: number) => {
-    setTasks(prev => prev.filter(t => t.id !== id));
-  };
-
-  const columns = [
-    { id: "todo" as const, label: "To Do", color: "text-slate-400", border: "border-slate-700" },
-    { id: "inprogress" as const, label: "In Progress", color: "text-violet-400", border: "border-violet-500/40" },
-    { id: "done" as const, label: "Completed", color: "text-emerald-400", border: "border-emerald-500/40" },
+export const MarketPriceLiveDemo: React.FC = () => {
+  const commodities: CommodityItem[] = [
+    { id: 1, name: "🍚 মিনিকেট চাল", category: "চাল", unit: "১ কেজি", price: 99, change: -2.9, trend: 'down' },
+    { id: 2, name: "🍚 নাজির চাল", category: "চাল", unit: "১ কেজি", price: 74, change: 0, trend: 'neutral' },
+    { id: 3, name: "🫘 মসুর ডাল", category: "ডাল", unit: "১ কেজি", price: 142, change: 2.9, trend: 'up' },
+    { id: 4, name: "🫘 ছোলা", category: "ডাল", unit: "১ কেজি", price: 120, change: -2.4, trend: 'down' },
+    { id: 5, name: "🫙 সরিষার তেল", category: "তেল", unit: "১ লিটার", price: 192, change: 2.1, trend: 'up' },
+    { id: 6, name: "🧅 পেঁয়াজ", category: "সবজি", unit: "১ কেজি", price: 54, change: 12.5, trend: 'up' },
+    { id: 7, name: "🥔 আলু", category: "সবজি", unit: "১ কেজি", price: 30, change: -6.2, trend: 'down' },
+    { id: 8, name: "🐟 রুই মাছ", category: "মাছ", unit: "১ কেজি", price: 340, change: 4.5, trend: 'up' },
+    { id: 9, name: "🍗 ব্রয়লার মুরগি", category: "মাংস", unit: "১ কেজি", price: 225, change: -1.3, trend: 'down' },
+    { id: 10, name: "🥚 ডিম (হালি)", category: "ডিম-দুধ", unit: "৪ টি", price: 52, change: 3.9, trend: 'up' },
   ];
 
-  return (
-    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
-        <div>
-          <span className="text-xs font-mono uppercase tracking-wider text-violet-400">Interactive Kanban Board</span>
-          <h4 className="text-lg font-bold text-white flex items-center gap-2">
-            <Clock className="w-5 h-5 text-violet-400" /> Sprint Task Flow
-          </h4>
-        </div>
-        <span className="text-xs font-mono text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-full">
-          {tasks.filter(t => t.status === "done").length} of {tasks.length} Done
-        </span>
-      </div>
-
-      <form onSubmit={addTask} className="mt-4 flex flex-col sm:flex-row gap-2">
-        <input
-          type="text"
-          value={newTaskTitle}
-          onChange={(e) => setNewTaskTitle(e.target.value)}
-          placeholder="Add a new task..."
-          className="flex-1 bg-slate-800/80 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500"
-        />
-        <select
-          value={newPriority}
-          onChange={(e) => setNewPriority(e.target.value)}
-          className="bg-slate-800/80 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-violet-500"
-        >
-          <option value="Low">Low Priority</option>
-          <option value="Medium">Medium Priority</option>
-          <option value="High">High Priority</option>
-        </select>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-colors shadow-sm"
-        >
-          <Plus className="w-3.5 h-3.5" /> Add Task
-        </button>
-      </form>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-        {columns.map(col => {
-          const colTasks = tasks.filter(t => t.status === col.id);
-          return (
-            <div key={col.id} className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50 flex flex-col min-h-[220px]">
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-700/50">
-                <span className={`text-xs font-bold ${col.color}`}>{col.label}</span>
-                <span className="text-[10px] font-mono bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">
-                  {colTasks.length}
-                </span>
-              </div>
-
-              <div className="space-y-2 flex-1">
-                {colTasks.length === 0 ? (
-                  <div className="text-[11px] text-slate-500 text-center py-6">No tasks in this stage</div>
-                ) : (
-                  colTasks.map(task => (
-                    <div 
-                      key={task.id} 
-                      className={`bg-slate-800/90 p-2.5 rounded-lg border ${col.border} shadow-sm transition-all hover:translate-y-[-2px]`}
-                    >
-                      <div className="text-xs font-medium text-slate-100">{task.title}</div>
-                      <div className="flex items-center justify-between mt-2 pt-1 border-t border-slate-700/40">
-                        <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${
-                          task.priority === "High" ? "bg-red-500/15 text-red-400 border border-red-500/20" :
-                          task.priority === "Medium" ? "bg-amber-500/15 text-amber-400 border border-amber-500/20" :
-                          "bg-blue-500/15 text-blue-400 border border-blue-500/20"
-                        }`}>
-                          {task.priority}
-                        </span>
-
-                        <div className="flex items-center gap-1">
-                          {col.id !== "todo" && (
-                            <button
-                              onClick={() => moveTask(task.id, col.id === "done" ? "inprogress" : "todo")}
-                              className="text-[10px] text-slate-400 hover:text-white px-1.5 py-0.5 rounded bg-slate-700/50"
-                              title="Move back"
-                            >
-                              ←
-                            </button>
-                          )}
-                          {col.id !== "done" && (
-                            <button
-                              onClick={() => moveTask(task.id, col.id === "todo" ? "inprogress" : "done")}
-                              className="text-[10px] text-violet-400 hover:text-violet-300 px-1.5 py-0.5 rounded bg-violet-950/60 border border-violet-500/30"
-                              title="Move forward"
-                            >
-                              →
-                            </button>
-                          )}
-                          <button
-                            onClick={() => deleteTask(task.id)}
-                            className="text-slate-500 hover:text-rose-400 p-0.5 ml-1"
-                            title="Delete"
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-interface TransactionItem {
-  id: number;
-  title: string;
-  category: string;
-  amount: number;
-  type: 'income' | 'expense';
-  date: string;
-}
-
-export const FinanceDashboardLiveDemo: React.FC = () => {
-  const [balance, setBalance] = useState<number>(24850);
-  const [transactions, setTransactions] = useState<TransactionItem[]>([
-    { id: 1, title: "Client Web App Retainer", category: "Income", amount: 3200, type: "income", date: "Today" },
-    { id: 2, title: "Cloud Server Hosting (AWS)", category: "Tech", amount: -85, type: "expense", date: "Yesterday" },
-    { id: 3, title: "Office Fiber Internet", category: "Utilities", amount: -45, type: "expense", date: "Oct 24" },
-    { id: 4, title: "Mobile App Consultation", category: "Income", amount: 1200, type: "income", date: "Oct 22" },
+  const [selectedCat, setSelectedCat] = useState<string>("সব");
+  const [cart, setCart] = useState<CartCommodity[]>([
+    { item: commodities[0], qty: 2 },
+    { item: commodities[4], qty: 1 },
+    { item: commodities[5], qty: 1 },
   ]);
 
-  const [newTitle, setNewTitle] = useState<string>("");
-  const [newAmount, setNewAmount] = useState<string>("");
-  const [newType, setNewType] = useState<'expense' | 'income'>("expense");
-
-  const addTransaction = (e: React.FormEvent) => {
-    e.preventDefault();
-    const val = parseFloat(newAmount);
-    if (!newTitle.trim() || isNaN(val) || val <= 0) return;
-
-    const adjustedAmount = newType === "expense" ? -val : val;
-    setBalance(prev => prev + adjustedAmount);
-    setTransactions(prev => [
-      {
-        id: Date.now(),
-        title: newTitle.trim(),
-        category: newType === "income" ? "Client Work" : "General Expense",
-        amount: adjustedAmount,
-        type: newType,
-        date: "Just Now",
-      },
-      ...prev,
-    ]);
-
-    setNewTitle("");
-    setNewAmount("");
+  const addToCart = (item: CommodityItem) => {
+    setCart(prev => {
+      const idx = prev.findIndex(c => c.item.id === item.id);
+      if (idx !== -1) {
+        return prev.map((c, i) => i === idx ? { ...c, qty: c.qty + 1 } : c);
+      }
+      return [...prev, { item, qty: 1 }];
+    });
   };
 
-  const totalIncome = transactions.filter(t => t.type === "income").reduce((s, t) => s + t.amount, 0);
-  const totalExpense = Math.abs(transactions.filter(t => t.type === "expense").reduce((s, t) => s + t.amount, 0));
+  const updateCartQty = (id: number, delta: number) => {
+    setCart(prev => prev.map(c => {
+      if (c.item.id === id) {
+        const next = c.qty + delta;
+        return next > 0 ? { ...c, qty: next } : c;
+      }
+      return c;
+    }));
+  };
+
+  const removeCartItem = (id: number) => {
+    setCart(prev => prev.filter(c => c.item.id !== id));
+  };
+
+  const filteredItems = selectedCat === "সব"
+    ? commodities
+    : commodities.filter(c => c.category === selectedCat);
+
+  const totalAmount = cart.reduce((sum, c) => sum + (c.item.price * c.qty), 0);
 
   return (
-    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
-        <div>
-          <span className="text-xs font-mono uppercase tracking-wider text-emerald-400">Interactive Finance Engine</span>
-          <h4 className="text-lg font-bold text-white flex items-center gap-2">
-            <DollarSign className="w-5 h-5 text-emerald-400" /> Executive Financial Ledger
-          </h4>
+    <div className="bg-dark-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      {/* Header */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <ShoppingCart className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-white">বাজার দর | Daily Market Price Monitor</h4>
+            <p className="text-[11px] text-slate-400 font-mono">নিত্যপণ্যের আজকের দাম ও রিয়েল-টাইম ক্যালকুলেটর</p>
+          </div>
         </div>
-        <div className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-          MBA Analytics Mode
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
-        <div className="bg-slate-800/60 p-3 rounded-xl border border-slate-700/60">
-          <span className="text-[10px] uppercase font-mono text-slate-400">Net Reserve Balance</span>
-          <div className="text-xl font-bold text-white mt-1">${balance.toLocaleString()}</div>
-          <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1 mt-1">
-            <TrendingUp className="w-3 h-3" /> Healthy Liquidity
+        <div className="flex items-center gap-2 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold">
+            মোট বাজেট: ৳ {totalAmount}
+          </span>
+          <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+            কার্টে {cart.reduce((s, c) => s + c.qty, 0)} টি
           </span>
         </div>
-        <div className="bg-slate-800/60 p-3 rounded-xl border border-slate-700/60">
-          <span className="text-[10px] uppercase font-mono text-slate-400">Sample Inflows</span>
-          <div className="text-xl font-bold text-emerald-400 mt-1">+${totalIncome.toLocaleString()}</div>
-          <span className="text-[10px] text-slate-400 font-mono block mt-1">Active Client Contracts</span>
-        </div>
-        <div className="bg-slate-800/60 p-3 rounded-xl border border-slate-700/60">
-          <span className="text-[10px] uppercase font-mono text-slate-400">Sample Outflows</span>
-          <div className="text-xl font-bold text-rose-400 mt-1">-${totalExpense.toLocaleString()}</div>
-          <span className="text-[10px] text-slate-400 font-mono block mt-1">Operating Overhead</span>
-        </div>
       </div>
 
-      <form onSubmit={addTransaction} className="mt-4 p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 flex flex-col sm:flex-row gap-2">
-        <input
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          placeholder="Transaction label (e.g., Domain renewal)"
-          className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-        />
-        <input
-          type="number"
-          value={newAmount}
-          onChange={(e) => setNewAmount(e.target.value)}
-          placeholder="Amount ($)"
-          className="w-full sm:w-28 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-        />
-        <select
-          value={newType}
-          onChange={(e) => setNewType(e.target.value as 'expense' | 'income')}
-          className="bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
-        >
-          <option value="expense">Expense (-)</option>
-          <option value="income">Income (+)</option>
-        </select>
-        <button
-          type="submit"
-          className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-colors"
-        >
-          <Plus className="w-3.5 h-3.5" /> Log
-        </button>
-      </form>
+      {/* Category Tabs */}
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {['সব', 'চাল', 'ডাল', 'তেল', 'সবজি', 'মাছ', 'মাংস', 'ডিম-দুধ'].map(cat => (
+          <button
+            key={cat}
+            onClick={() => setSelectedCat(cat)}
+            className={`px-3 py-1 rounded-lg text-xs font-mono transition-colors ${
+              selectedCat === cat
+                ? 'bg-emerald-600 text-white font-semibold shadow-sm'
+                : 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-      <div className="mt-4 space-y-2">
-        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Recent Transactions</div>
-        {transactions.map(item => (
-          <div key={item.id} className="bg-slate-800/70 p-2.5 rounded-lg border border-slate-700/40 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className={`w-6 h-6 rounded-md flex items-center justify-center text-xs ${
-                item.type === "income" ? "bg-emerald-500/20 text-emerald-400" : "bg-rose-500/20 text-rose-400"
-              }`}>
-                {item.type === "income" ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Commodities Table / Cards */}
+        <div className="lg:col-span-2 space-y-2">
+          <h5 className="text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-2">
+            নিত্যপণ্যের মূল্য তালিকা ({filteredItems.length})
+          </h5>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {filteredItems.map(c => (
+              <div
+                key={c.id}
+                className="bg-slate-950/70 p-3 rounded-xl border border-slate-800 flex items-center justify-between hover:border-emerald-500/40 transition-colors"
+              >
+                <div>
+                  <div className="text-xs font-bold text-white">{c.name}</div>
+                  <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                    একক: {c.unit}
+                  </div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xs font-bold text-emerald-300 font-mono">
+                      ৳ {c.price}
+                    </span>
+                    <span className={`text-[9px] font-mono flex items-center ${
+                      c.trend === 'up' 
+                        ? 'text-rose-400' 
+                        : c.trend === 'down' 
+                          ? 'text-emerald-400' 
+                          : 'text-slate-400'
+                    }`}>
+                      {c.trend === 'up' && <TrendingUp className="w-2.5 h-2.5 mr-0.5" />}
+                      {c.trend === 'down' && <TrendingDown className="w-2.5 h-2.5 mr-0.5" />}
+                      {c.change > 0 ? `+${c.change}%` : `${c.change}%`}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => addToCart(c)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-emerald-600 hover:text-white text-slate-300 text-xs font-mono border border-slate-800 flex items-center gap-1 transition-colors"
+                >
+                  <Plus className="w-3 h-3" /> কার্টে নিন
+                </button>
               </div>
-              <div>
-                <div className="text-xs font-medium text-slate-200">{item.title}</div>
-                <div className="text-[10px] text-slate-400 font-mono">{item.category} • {item.date}</div>
-              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dynamic Shopping Cart */}
+        <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800">
+              <h5 className="text-xs font-bold text-white font-mono flex items-center gap-1.5">
+                <ShoppingCart className="w-3.5 h-3.5 text-emerald-400" /> আজকের বাজার কার্ট
+              </h5>
+              <span className="px-2 py-0.5 rounded bg-emerald-950/80 text-[10px] text-emerald-300 font-mono">
+                {cart.length} আইটেম
+              </span>
             </div>
-            <div className={`text-xs font-mono font-bold ${item.type === "income" ? "text-emerald-400" : "text-rose-400"}`}>
-              {item.type === "income" ? "+" : ""}${Math.abs(item.amount)}
+
+            <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+              {cart.map(c => (
+                <div key={c.item.id} className="p-2 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+                  <div>
+                    <span className="font-semibold text-slate-200 block text-[11px] truncate max-w-[110px]">
+                      {c.item.name}
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-mono">৳ {c.item.price} × {c.qty}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => updateCartQty(c.item.id, -1)}
+                      className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center text-xs font-bold"
+                    >
+                      -
+                    </button>
+                    <span className="text-xs font-mono text-white w-4 text-center">{c.qty}</span>
+                    <button
+                      onClick={() => updateCartQty(c.item.id, 1)}
+                      className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center text-xs font-bold"
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() => removeCartItem(c.item.id)}
+                      className="p-1 text-slate-500 hover:text-rose-400 ml-1"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              {cart.length === 0 && (
+                <p className="text-xs text-slate-500 text-center py-8 italic">কার্ট এখন খালি। তালিকা থেকে পণ্য যুক্ত করুন।</p>
+              )}
             </div>
           </div>
-        ))}
+
+          <div className="pt-4 mt-3 border-t border-slate-800">
+            <div className="flex justify-between items-center text-sm font-bold text-white mb-2 font-mono">
+              <span>সর্বমোট খরচ:</span>
+              <span className="text-emerald-400">৳ {totalAmount}</span>
+            </div>
+            <div className="text-[10px] text-slate-400 font-mono text-center">
+              ✓ রিয়েল-টাইম প্রাইস আপডেট ও কার্ট ক্যালকুলেশন
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
+/* =============================================================
+ * Fallback / Legacy Live Demos
+ * =========================================================== */
+export const EcommerceLiveDemo: React.FC = () => <DevStackLiveDemo />;
+export const TaskManagementLiveDemo: React.FC = () => <FitLogLiveDemo />;
+export const FinanceDashboardLiveDemo: React.FC = () => <MarketPriceLiveDemo />;

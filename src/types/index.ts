@@ -85,7 +85,7 @@ export interface Project {
   shortDescription: string;
   category: string;
   featured: boolean;
-  thumbnailType: 'ecommerce' | 'taskManagement' | 'financeDashboard';
+  thumbnailType: 'ecommerce' | 'taskManagement' | 'financeDashboard' | 'devstack' | 'fitlog' | 'marketPrice' | string;
   liveUrl?: string;
   clientRepoUrl?: string;
   serverRepoUrl?: string;

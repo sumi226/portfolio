@@ -9,6 +9,9 @@ import {
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { 
+  DevStackLiveDemo,
+  FitLogLiveDemo,
+  MarketPriceLiveDemo,
   EcommerceLiveDemo, 
   TaskManagementLiveDemo, 
   FinanceDashboardLiveDemo 
@@ -51,14 +54,17 @@ export const ProjectDetails: React.FC = () => {
 
   const renderLiveInteractiveDemo = () => {
     switch (project.id) {
+      case 'devstack':
       case 'ecommerce':
-        return <EcommerceLiveDemo />;
+        return <DevStackLiveDemo />;
+      case 'fitlog':
       case 'task-management':
-        return <TaskManagementLiveDemo />;
+        return <FitLogLiveDemo />;
+      case 'market-price':
       case 'finance-dashboard':
-        return <FinanceDashboardLiveDemo />;
+        return <MarketPriceLiveDemo />;
       default:
-        return null;
+        return <DevStackLiveDemo />;
     }
   };
 

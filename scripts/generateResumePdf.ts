@@ -30,17 +30,17 @@ const streamContent = `BT
 /F2 9.5 Tf
 (Frontend: ) Tj
 /F1 9.5 Tf
-(React.js, Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Responsive Web Design) Tj
+(TypeScript, React.js, Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Responsive Design) Tj
 0 -13 Td
 /F2 9.5 Tf
-(Backend: ) Tj
+(Backend & Auth: ) Tj
 /F1 9.5 Tf
-(Node.js, Express.js, REST APIs, JSON Middleware, Endpoint Architecture) Tj
+(Node.js, Express.js, Better Auth, REST APIs, JSON Middleware, Session Security) Tj
 0 -13 Td
 /F2 9.5 Tf
 (Databases: ) Tj
 /F1 9.5 Tf
-(MongoDB, Mongoose ODM, MySQL, NoSQL Database Architecture) Tj
+(MongoDB, Mongoose ODM Modeling, MySQL, NoSQL Architecture) Tj
 0 -13 Td
 /F2 9.5 Tf
 (Tools & Platforms: ) Tj
@@ -72,28 +72,34 @@ const streamContent = `BT
 (FEATURED PROJECTS) Tj
 0 -14 Td
 /F2 9.5 Tf
-(1. E-Commerce Web Application) Tj
+(1. DevStack - Developer Task & Sprint Platform) Tj
 0 -12 Td
 /F1 9 Tf
-(Tech Stack: React.js, Tailwind CSS, Node.js, Express.js, MongoDB) Tj
+(Tech Stack: React.js, Tailwind CSS, JavaScript, Vite, Netlify) Tj
 0 -11 Td
-(Features: Dynamic product catalog, search filters, interactive cart state, and responsive checkout flow.) Tj
+(Live: https://devstack-pr.netlify.app/  |  Repo: https://github.com/sumi226/Assignment-05-DevStack) Tj
+0 -11 Td
+(Features: Kanban workflow, active sprint tracking, task status management, and responsive UI.) Tj
 0 -14 Td
 /F2 9.5 Tf
-(2. Task Management Application) Tj
+(2. FitLog - Workout Library & Routine Planner) Tj
 0 -12 Td
 /F1 9 Tf
-(Tech Stack: React.js, Tailwind CSS, REST APIs, Framer Motion) Tj
+(Tech Stack: Next.js, React.js, Tailwind CSS, TypeScript, Vercel) Tj
 0 -11 Td
-(Features: Kanban workflow, CRUD operations, status management (To Do, In Progress, Done), priority labels.) Tj
+(Live: https://fit-log-3n3e.vercel.app  |  Repo: https://github.com/sumi226/Fit_log) Tj
+0 -11 Td
+(Features: Curated exercise catalog, daily plan routine builder, set logging, dark mode UI.) Tj
 0 -14 Td
 /F2 9.5 Tf
-(3. Personal Finance Dashboard) Tj
+(3. Bazar Dor - Daily Commodity Price Monitor) Tj
 0 -12 Td
 /F1 9 Tf
-(Tech Stack: React.js, Tailwind CSS, SVG Visualizations, Express.js) Tj
+(Tech Stack: Next.js, React.js, Tailwind CSS, TypeScript, Vercel) Tj
 0 -11 Td
-(Features: Financial analytics, expense/income tracking, summary cards and charts, budget surplus metrics.) Tj
+(Live: https://sumi226-market-price.vercel.app/  |  Repo: https://github.com/sumi226/market-price) Tj
+0 -11 Td
+(Features: Live grocery price trends in BDT, percentage movement badges, and dynamic cart calculator.) Tj
 ET`;
 
 function buildPdf(content: string): Buffer {

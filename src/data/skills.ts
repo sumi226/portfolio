@@ -38,6 +38,15 @@ export const skillsData: Skill[] = [
     badgeBg: "bg-yellow-500/10 text-yellow-300",
   },
   {
+    id: "typescript",
+    name: "TypeScript",
+    category: "frontend",
+    tagline: "Static typing & robust scalable codebases",
+    focus: ["Static Typing & Generics", "Interfaces & Type Aliases", "Strict Type Safety", "Modern Tooling & Compilers"],
+    accentColor: "border-blue-500/30 text-blue-400 group-hover:border-blue-500/60",
+    badgeBg: "bg-blue-500/10 text-blue-300",
+  },
+  {
     id: "react",
     name: "React.js",
     category: "frontend",
@@ -92,6 +101,15 @@ export const skillsData: Skill[] = [
     focus: ["CRUD Operations", "HTTP Status Codes", "JSON Payloads", "CORS & Auth Headers"],
     accentColor: "border-indigo-500/30 text-indigo-400 group-hover:border-indigo-500/60",
     badgeBg: "bg-indigo-500/10 text-indigo-300",
+  },
+  {
+    id: "better-auth",
+    name: "Better Auth & Authentication",
+    category: "backend",
+    tagline: "Modern full-stack authentication & session security",
+    focus: ["Better Auth Integration", "Session Management & Cookies", "OAuth & Social Sign-In", "Role-Based Access Control (RBAC)"],
+    accentColor: "border-sky-500/30 text-sky-400 group-hover:border-sky-500/60",
+    badgeBg: "bg-sky-500/10 text-sky-300",
   },
 
   // Database

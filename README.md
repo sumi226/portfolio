@@ -16,11 +16,11 @@ A modern, responsive, and high-performance developer portfolio website designed 
   2. **MBS in Management** (National University) — 2nd Division
   3. **Honours in Management** (National University) — 1st Division
 - **Projects Section & Interactive Live Demos**:
-  1. **E-Commerce Web Application**: Dynamic catalog, filter pills, interactive shopping cart, checkout modal.
-  2. **Task Management Application**: Kanban sprint board, task lifecycle (To Do / In Progress / Done), priority tagging.
-  3. **Personal Finance Dashboard**: Financial KPI summary cards, transaction ledger, expense/income tracking.
+  1. **DevStack**: High-performance developer workspace, sprint tracker & task organization system (React, Tailwind CSS, JavaScript, Vite, Netlify).
+  2. **FitLog**: Dark-mode gym companion, exercise catalog & daily routine planner (Next.js, TypeScript, Tailwind CSS, Vercel).
+  3. **বাজার দর (Market Price)**: Real-time essential commodity price monitor with price trend indicators and dynamic shopping cart budgeter (Next.js, TypeScript, Tailwind CSS, Vercel).
 - **Dedicated Project Detail Pages (`/projects/:id`)**:
-  - Routes: `/projects/ecommerce`, `/projects/task-management`, `/projects/finance-dashboard`
+  - Routes: `/projects/devstack`, `/projects/fitlog`, `/projects/market-price`
   - Deep-dive sections: Overview, Key Features, Technical Challenges & Solutions, Architectural Role, Future Roadmap, and interactive live previews.
 - **Resume Section**: Dedicated CV viewer with tabs (Summary, Education, Skills, Projects) and downloadable PDF served from `public/resume.pdf`.
 - **Contact Section**:
@@ -45,7 +45,7 @@ A modern, responsive, and high-performance developer portfolio website designed 
 | **Animations & Transitions** | Framer Motion & CSS Utilities |
 | **Routing** | Next.js App Router |
 | **Optional Backend** | Node.js & Express.js |
-| **Database Support** | MongoDB & Mongoose (Optional) |
+| **Database Support** | MongoDB & MySQL (Optional) |
 
 ---
 

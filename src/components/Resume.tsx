@@ -133,8 +133,8 @@ export const Resume: React.FC = () => {
                     Core Competencies
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs text-slate-300">
-                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                      • Single Page Apps (React.js)
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-sky-400 font-semibold">
+                      • TypeScript & React.js
                     </div>
                     <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
                       • Responsive UI (Tailwind CSS)
@@ -144,6 +144,9 @@ export const Resume: React.FC = () => {
                     </div>
                     <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
                       • Node.js & Express.js
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-sky-400 font-semibold">
+                      • Better Auth & Authentication
                     </div>
                     <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
                       • MongoDB & NoSQL Schemas
@@ -185,19 +188,19 @@ export const Resume: React.FC = () => {
                   <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
                     <div className="text-xs font-bold text-cyan-400 mb-2">Frontend Development</div>
                     <p className="text-xs text-slate-300 leading-relaxed">
-                      HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Responsive Web Design, Component Architecture, State Management.
+                      TypeScript, JavaScript (ES6+), React.js, Tailwind CSS, HTML5, CSS3, Responsive Web Design, Component Architecture, State Management.
                     </p>
                   </div>
                   <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
-                    <div className="text-xs font-bold text-emerald-400 mb-2">Backend & APIs</div>
+                    <div className="text-xs font-bold text-emerald-400 mb-2">Backend & Authentication</div>
                     <p className="text-xs text-slate-300 leading-relaxed">
-                      Node.js, Express.js, REST APIs, JSON Middleware, Endpoint Routing, Error Handling, Server-side Integration.
+                      Node.js, Express.js, Better Auth / Authentication, REST APIs, JSON Middleware, Endpoint Routing, Session Security & Tokens.
                     </p>
                   </div>
                   <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
                     <div className="text-xs font-bold text-violet-400 mb-2">Database Systems</div>
                     <p className="text-xs text-slate-300 leading-relaxed">
-                      MongoDB, MySQL, NoSQL data structures, Schema modeling with Mongoose, Document storage.
+                      MongoDB, Mongoose ODM Modeling, MySQL, NoSQL data structures, Document storage, Query optimization, Database indexing.
                     </p>
                   </div>
                   <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
