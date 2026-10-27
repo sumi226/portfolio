@@ -1,0 +1,129 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 1762 >>
+stream
+BT
+/F2 18 Tf
+50 740 Td
+(FATEMA AKTER) Tj
+0 -18 Td
+/F1 11 Tf
+(Full Stack Developer  |  MERN Stack) Tj
+0 -16 Td
+/F1 9.5 Tf
+(Email: fsumi226@gmail.com   Phone: +880167971447   Location: Chittagong, Bangladesh) Tj
+0 -13 Td
+(GitHub: https://github.com/sumi226   LinkedIn: https://www.linkedin.com/in/fatema226/) Tj
+0 -20 Td
+/F2 12 Tf
+(PROFESSIONAL SUMMARY) Tj
+0 -13 Td
+/F1 9.5 Tf
+(Passionate Full Stack Developer with an analytical background in MBA Finance & Banking and Management.) Tj
+0 -12 Td
+(Dedicated to developing modern, user-friendly, responsive web applications and scalable RESTful backends) Tj
+0 -12 Td
+(using React.js, Node.js, Express.js, and MongoDB. Enthusiastic problem-solver and lifelong learner.) Tj
+0 -20 Td
+/F2 12 Tf
+(TECHNICAL SKILLS) Tj
+0 -14 Td
+/F2 9.5 Tf
+(Frontend: ) Tj
+/F1 9.5 Tf
+(React.js, Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Responsive Web Design) Tj
+0 -13 Td
+/F2 9.5 Tf
+(Backend: ) Tj
+/F1 9.5 Tf
+(Node.js, Express.js, REST APIs, JSON Middleware, Endpoint Architecture) Tj
+0 -13 Td
+/F2 9.5 Tf
+(Databases: ) Tj
+/F1 9.5 Tf
+(MongoDB, Mongoose ODM, MySQL, NoSQL Database Architecture) Tj
+0 -13 Td
+/F2 9.5 Tf
+(Tools & Platforms: ) Tj
+/F1 9.5 Tf
+(Git, GitHub, VS Code, Postman, npm, Vite) Tj
+0 -20 Td
+/F2 12 Tf
+(EDUCATIONAL QUALIFICATIONS) Tj
+0 -14 Td
+/F2 9.5 Tf
+(MBA in Finance & Banking  -  CGPA: 3.65 / 4.00) Tj
+0 -12 Td
+/F1 9 Tf
+(International Islamic University, Chittagong [IIUC]) Tj
+0 -14 Td
+/F2 9.5 Tf
+(MBS in Management  -  2nd Division) Tj
+0 -12 Td
+/F1 9 Tf
+(National University) Tj
+0 -14 Td
+/F2 9.5 Tf
+(Honours in Management  -  1st Division) Tj
+0 -12 Td
+/F1 9 Tf
+(National University) Tj
+0 -20 Td
+/F2 12 Tf
+(FEATURED PROJECTS) Tj
+0 -14 Td
+/F2 9.5 Tf
+(1. E-Commerce Web Application) Tj
+0 -12 Td
+/F1 9 Tf
+(Tech Stack: React.js, Tailwind CSS, Node.js, Express.js, MongoDB) Tj
+0 -11 Td
+(Features: Dynamic product catalog, search filters, interactive cart state, and responsive checkout flow.) Tj
+0 -14 Td
+/F2 9.5 Tf
+(2. Task Management Application) Tj
+0 -12 Td
+/F1 9 Tf
+(Tech Stack: React.js, Tailwind CSS, REST APIs, Framer Motion) Tj
+0 -11 Td
+(Features: Kanban workflow, CRUD operations, status management, priority labels.) Tj
+0 -14 Td
+/F2 9.5 Tf
+(3. Personal Finance Dashboard) Tj
+0 -12 Td
+/F1 9 Tf
+(Tech Stack: React.js, Tailwind CSS, SVG Visualizations, Express.js) Tj
+0 -11 Td
+(Features: Financial analytics, expense/income tracking, summary cards and charts, budget surplus metrics.) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000057 00000 n 
+0000000112 00000 n 
+0000000244 00000 n 
+0000000312 00000 n 
+0000000385 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2216
+%%EOF
